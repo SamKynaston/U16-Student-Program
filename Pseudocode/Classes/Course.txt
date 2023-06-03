@@ -1,0 +1,6 @@
+Class Course:
+  Init(self):
+    self.Title = "N/A"
+    self.Code = "N/A"
+    self.Grade = "N/A"
+

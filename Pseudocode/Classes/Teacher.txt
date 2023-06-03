@@ -1,0 +1,9 @@
+Import Person from Person
+
+Class Teacher Extends Person:
+  Init(self):
+    self.Role = "N/A"
+    self.Students = []
+
+  Function SetRole(self, role):
+    self.Role = role

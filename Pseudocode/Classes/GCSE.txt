@@ -1,0 +1,6 @@
+Import Course from Course
+
+Class GCSE Extends Course:
+  Init(self):
+    self.Grade = (REGEX:U-9)
+

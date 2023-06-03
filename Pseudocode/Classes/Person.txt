@@ -1,0 +1,11 @@
+Class Person:
+  Init(self):
+    self.Name = "N/A"
+    self.ID = 0
+    self.DoB = "N/A"
+  
+  Function SetName(self, name):
+    self.Name = name
+  
+  Function SetDoB(self, dob):
+    self.DoB = dob

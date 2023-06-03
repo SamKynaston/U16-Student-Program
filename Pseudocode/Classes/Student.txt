@@ -1,0 +1,6 @@
+Import Person from Person
+
+Class Student Extends Person:
+  Init(self):
+    self.Course = nil
+    self.GCSE = []

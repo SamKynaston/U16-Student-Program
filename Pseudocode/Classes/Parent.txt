@@ -1,0 +1,9 @@
+Import Person from Person
+
+Class Parent Extends Person:
+  Init(self):
+    self.Relations = []
+    self.PhoneNo = "N/A"
+  
+  Function SetPhoneNo(self, phoneNo)
+    self.PhoneNo = phoneNo

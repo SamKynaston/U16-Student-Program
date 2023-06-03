@@ -1,0 +1,202 @@
+Import GCSE from GCSE
+Import Course from Course
+Import Student from Student
+Import Parent from Parent
+Import Teacher from Teacher
+
+People = []
+
+Function NewUser()
+  Name = ""
+  dob = ""
+  obj = nil
+
+  While True Do: 
+    Name = String(Input("Name: "))
+
+    If LENGTH(Desc) > 0:
+      UserDetails.Name = Name
+      break
+
+  While True Do: 
+    dob = String(Input("DoB: "))
+
+    If LENGTH(Desc) > 0:
+      UserDetails.DoB = DoB
+      break
+  
+  print("""
+
+    Categories to Choose:
+    1. Student
+    2. Parent
+    3. Teacher
+
+  """)
+
+  While True Do:
+    Try:
+      Category = Int(Input("Category: "))
+
+      If Category == 1 Then
+        obj = New Student()
+        obj.SetName(Name)
+        obj.SetDoB(dob)
+        obj.ID = "1001" + String(Length(People)+1)
+
+        While True Do:
+          Grade = New GCSE()
+
+          Grade.Title = String(Input("GCSE Name: "))
+          Grade.Code = String(Input("GCSE Code: ")) 
+          Grade.Grade = String(Input("GCSE Grade: "))
+          
+          obj.GCSE.Append(Grade)
+
+      Elif Category == 2 Then
+        obj = New Parent()
+        obj.SetName(Name)
+        obj.SetDoB(dob)
+        obj.ID = "1002" + String(Length(People)+1)
+
+        While True Do:
+          ID = String(Input("ID of Student: "))
+          
+          For Student in People Do:
+            If Student.ID == ID Then
+              obj.Relations.append(Student)
+            End
+          EndFor
+
+      Elif Category == 3 Then
+        obj = New Teacher()
+        obj.ID = "1001" + String(Length(People)+1)
+      End
+      Break
+    Except:
+      print("Use a Number!")
+EndFunction
+
+Function RemoveUser(selection)
+  For User in Selection Do:
+    User = nil
+  End
+EndFunction
+
+Function UserSearch(criteria) 
+  ReturnList = []
+  For Student in People Do
+    If Student.Name == Criteria Then
+      ReturnList.append(Student)
+    Elif Student.Course.Title = Criteria Then
+      ReturnList.append(Student)
+    Elif Student.ID = Criteria Then
+      ReturnList.append(Student)
+    End
+  End
+  Return ReturnList
+EndFunction
+
+Function UserSearch(obj) 
+  For Value in Obj Do
+    print(value) + " - " + print(Obj[value])
+  End
+End
+
+Function ChangeDetails(obj)
+  While True Do:
+    Category = String(Input("Category to Change: "))
+    
+    If obj[Category] Then
+      If Category == "GCSE" Then
+        While True Do:
+          Operation = String(Input("Operation (Add|Remove): "))
+
+          If Operation == "Add" Then
+            While True Do:
+              ID = String(Input("ID of Student: "))
+          
+              For Student in People Do:
+                If Student.ID == ID Then
+                  obj.Relations.append(Student)
+                End
+              EndFor
+          Elif Operation == "Remove" Then
+            For Relation in obj["Relations"] Do
+              print(Relation.Name + "(" + Relation.ID + ")")
+
+              While True Do:
+                Operation = String(Input("Remove? (Y|N): "))
+                
+                If Operation == "Y" Then
+                  Relation = nil
+                  Break
+                Elif Operation == "N"
+                  Break
+                End
+      
+            End
+         End
+      If Category == "Relations" Then
+        While True Do:
+          Operation = String(Input("Operation (Add|Remove): "))
+
+          If Operation == "Add" Then
+            While True Do:
+              Grade = New GCSE()
+
+              Grade.Title = String(Input("GCSE Name: "))
+              Grade.Code = String(Input("GCSE Code: ")) 
+              Grade.Grade = String(Input("GCSE Grade: "))
+          
+              obj.GCSE.Append(Grade)
+          Elif Operation == "Remove" Then
+            For GCSE in obj["GCSE"] Do
+              print(GCSE.Title + "(" + GCSE.Code + ")")
+
+              While True Do:
+                Operation = String(Input("Remove? (Y|N): "))
+                
+                If Operation == "Y" Then
+                  GCSE = nil
+                  Break
+                Elif Operation == "N"
+                  Break
+                End
+      
+            End
+         End
+      End
+    End
+
+    If Category == "Quit" Then
+      Break
+    End
+End
+
+Function WindowInitialize(self)
+  If self.QuitBtn:Click() Then
+    self:Destroy()
+  End
+
+  If self.UserAddBtn:Click() Then
+    NewUser()
+  End
+
+  If self.UserRemoveBtn:Click() AND self.UserList.Selection() Then
+    RemoveUser(selection)
+  End
+
+  If self.SearchBar:Typed() Then
+    UserSearch(self.SearchBar.Text)
+  End
+  
+
+  If self.Student.GetDetails:Click() Then
+    RetrieveDetails(self.Student)
+  End
+
+  If self.Student.ChangeDetails:Click() Then
+    ChangeDetails(self.Student)
+  End
+EndFunction
